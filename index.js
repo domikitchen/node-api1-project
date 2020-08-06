@@ -1,12 +1,15 @@
 const express = require('express');
 const shortid = require('shortid');
-const e = require('express');
 
 const server = express();
 
 server.use(express.json());
 
 let users = [ { id: "1df3487", name: "Jane Doe", bio: "Not Tarzan's Wife, another jane"}, { id: "sdf983", name: "sdf sdf", bio: "sg g ae tbsfghsge gr"} ];
+
+server.get('/', (req, res) => {
+    res.send(`<h2>/api/users</h2>`);
+})
 
 server.post('/api/users', (request, response) => {
     const user = request.body;
@@ -101,5 +104,5 @@ server.put('/api/users/:id', (request, response) => {
     }
 });
 
-const port = 8000;
+const port = process.env.PORT || 4000;
 server.listen(port, () => console.log("server NYOOM"));
